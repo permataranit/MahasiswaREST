@@ -2,7 +2,8 @@
 
 use GuzzleHttp\Client;
 
-class Mahasiswa_model extends CI_Model{
+class Mahasiswa_model extends CI_Model
+{
 
 	/* NOTES :
 		$client = new Client();
@@ -23,14 +24,14 @@ class Mahasiswa_model extends CI_Model{
 
 	public function __construct()
 	{
-		
+
 		// Menggunakan this untuk memanggil variable private
 		// Menambahkan parameter pada pembuatan Client()
 		$this->_client = new Client([
 			// Menyimpan hanya sampai api/ , bukan mahasiswa/
-			'base_uri' => 'http://localhost/cobaAPI/RestServer/api/',
+			'base_uri' => 'http://localhost/MahasiswaREST/RestServer/api/',
 			// Menyimpan authentikasi [username, password]
-			'auth' => ['admin','1234']
+			'auth' => ['admin', '1234']
 		]);
 	}
 	public function getAllMahasiswa()
@@ -47,7 +48,7 @@ class Mahasiswa_model extends CI_Model{
 	}
 
 	public function getMahasiswaById($id)
-	{	
+	{
 		$response = $this->_client->request('GET', 'mahasiswa', [
 			'query' => [
 				'X-API-KEY' => 'wpu123',
@@ -64,10 +65,10 @@ class Mahasiswa_model extends CI_Model{
 		//siapin datanya dulu baru nanti di insert
 		//true pada fungsi post untuk mengaktifkan pengamanan dari SQL Injection
 		$data = array(
-        	'nama' => $this->input->post('nama', true),
-        	'NIM' => $this->input->post('nim', true),
-        	'email' => $this->input->post('email', true),
-        	'no_telp' => $this->input->post('phone', true),
+			'nama' => $this->input->post('nama', true),
+			'NIM' => $this->input->post('nim', true),
+			'email' => $this->input->post('email', true),
+			'no_telp' => $this->input->post('phone', true),
 			'alamat' => $this->input->post('alamat', true),
 			'X-API-KEY' => 'wpu123' //ini ngikut disini hehe
 		);
@@ -101,8 +102,8 @@ class Mahasiswa_model extends CI_Model{
 		//true pada fungsi post untuk mengaktifkan pengamanan dari SQL Injection
 		$data = array(
 			'id' => $this->input->post('nim', true),
-        	'nama' => $this->input->post('nama', true),
-        	'no_telp' => $this->input->post('phone', true),
+			'nama' => $this->input->post('nama', true),
+			'no_telp' => $this->input->post('phone', true),
 			'alamat' => $this->input->post('alamat', true),
 			'X-API-KEY' => 'wpu123'
 		);
